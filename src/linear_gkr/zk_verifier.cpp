@@ -1206,7 +1206,7 @@ bool zk_verifier::verify(const char* output_path)
 	p->all_pri_mask.push_back(p->maskr[1]);
 	all_mask_sum = all_mask_sum + p->Zu * p->sumRc.eval(p->preu1);
 	
-	std::cerr << "GKR Prove Time " << p -> total_time << std::endl;
+	std::cerr << "GKR Prove Time " << p -> total_time << "  bit_length:  " << C.circuit[0].bit_length << std::endl;
 	prime_field::field_element *all_sum;
 	all_sum = new prime_field::field_element[slice_number + 1];
 	auto merkle_root_l = (p -> poly_prover).commit_private_array(p -> circuit_value[0], C.circuit[0].bit_length, p -> all_pri_mask);
