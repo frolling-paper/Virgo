@@ -1222,7 +1222,7 @@ bool zk_verifier::verify(const char* output_path)
 	
 	prime_field::field_element *public_array = public_array_prepare(r_0, one_minus_r_0, C.circuit[0].bit_length, q_eval_real);
 	//prime_field::field_element *public_array = public_array_prepare_generic(q_eval_real, C.circuit[0].bit_length);
-	std::cerr << "GKR Verify Time " << verification_time << std::endl;
+	std::cerr << "GKR Verify Time " << verification_time - verification_rdl_time << std::endl;
 	std::cerr << "GKR Proof size " << proof_size << std::endl;
 	
 	bool input_0_verify = poly_ver.verify_poly_commitment(all_sum, C.circuit[0].bit_length, public_array, all_pub_mask, verification_time, proof_size, p -> total_time, merkle_root_l, merkle_root_h);
