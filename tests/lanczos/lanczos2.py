@@ -83,7 +83,7 @@ def print_rdl(ratio, npixels, N_in, fh):
     N_val = n_reps ** 2
     assert N_in == N_val # just to be sure...
 
-    print "n_reps = %d, N = %d" % (n_reps, N_val)
+    print("n_reps = %d, N = %d" % (n_reps, N_val))
 
     n_inputs_subAC = 16 * ratio ** 2 + 2 * ratio
     nbits = (n_inputs_subAC-1).bit_length()
@@ -123,18 +123,18 @@ def print_rdl(ratio, npixels, N_in, fh):
 if __name__ == "__main__":
     # handle arguments
     if len(sys.argv) < 3:
-        print "Usage: %s <downsample ratio> <image dimension>" % sys.argv[0]
-        print "  <downsample ratio> is the one-dimensional ratio (e.g., 4x means the image is 16x smaller)"
-        print "  <image dimension> is the x- or y-dimension, e.g., 1024 means 1024x1024 image"
-        print
-        print "Image dimension must be at least 4x the downsample ratio and ratio must divide dimension."
+        print("Usage: %s <downsample ratio> <image dimension>" % sys.argv[0])
+        print("  <downsample ratio> is the one-dimensional ratio (e.g., 4x means the image is 16x smaller)")
+        print("  <image dimension> is the x- or y-dimension, e.g., 1024 means 1024x1024 image")
+        print('')
+        print("Image dimension must be at least 4x the downsample ratio and ratio must divide dimension.")
         sys.exit(-1)
 
     rat = int(sys.argv[1])
     npix = int(sys.argv[2])
 
     if npix < 4 * rat or npix % rat != 0:
-        print "ERROR: Image dimension must be at least 4x the downsample ratio and ratio must divide dimension."
+        print("ERROR: Image dimension must be at least 4x the downsample ratio and ratio must divide dimension.")
         sys.exit(-1)
 
     with open("lanczos2_%d.pws" % rat, "w") as f:
