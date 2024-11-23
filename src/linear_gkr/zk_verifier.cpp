@@ -1206,7 +1206,7 @@ bool zk_verifier::verify(const char* output_path)
 	p->all_pri_mask.push_back(p->maskr[1]);
 	all_mask_sum = all_mask_sum + p->Zu * p->sumRc.eval(p->preu1);
 	
-	std::cerr << "GKR Prove Time " << p -> total_time << "  bit_length:  " << C.circuit[0].bit_length << std::endl;
+	std::cerr << "GKR Prove Time " << p -> total_time << "  Polynomial variable number:  " << C.circuit[0].bit_length << std::endl;
 	prime_field::field_element *all_sum;
 	all_sum = new prime_field::field_element[slice_number + 1];
 	auto merkle_root_l = (p -> poly_prover).commit_private_array(p -> circuit_value[0], C.circuit[0].bit_length, p -> all_pri_mask);
@@ -1239,12 +1239,7 @@ bool zk_verifier::verify(const char* output_path)
 	}
 	else
 	{
-		fprintf(stderr, "Verification pass\n");
-		std::cerr << "Prove Time " << p -> total_time << std::endl;
-		std::cerr << "Verification rdl time " << verification_rdl_time << std::endl;
 		//verification rdl time is the non-parallel part of the circuit. In all of our experiments and most applications, it can be calculated in O(log n) or O(log^2 n) time. We didn't implement the fast method due to the deadline.
-		std::cerr << "Verification Time " << verification_time - verification_rdl_time << std::endl;
-		std::cerr << "Proof size(bytes) " << proof_size << std::endl;
 		FILE *result = fopen(output_path, "w");
 		fprintf(result, "%lf %lf %lf %lf %d\n", p -> total_time, verification_time, predicates_calc_time, verification_rdl_time, proof_size);
 		fclose(result);
